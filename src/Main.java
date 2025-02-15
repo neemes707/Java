@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -6,8 +8,10 @@ public class Main {
         *  elements in a queue and this operation should be such that the queue should
         *  wait if no element is there is removing and if queue is full then wait before adding
         * */
-        System.out.println("Hello World");
-        SharedResource sharedResource = new SharedResource();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter queue size");
+        int queueSize = scanner.nextInt();
+        SharedResource sharedResource = new SharedResource(queueSize);
 
         Thread producerThread = new Thread(()->{
             System.out.println("Inside producer thread");

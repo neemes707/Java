@@ -1,12 +1,18 @@
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class SharedResource {
-     ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(3);
+
+     private int queueSize;
+     private ArrayBlockingQueue<Integer> queue;
+     SharedResource(int queueSize){
+         this.queueSize = queueSize;
+         queue = new ArrayBlockingQueue<>(queueSize);
+     }
 
     //synchronized used as it requires monitor lock on shared resource
      public synchronized void produceElement(){
          try {
-             while(queue.size() == 3){
+             while(queue.size() == queueSize){
                  System.out.println("Queue size if full so waiting");
                  wait(); // this will release all the monitor locks on this object
              }
